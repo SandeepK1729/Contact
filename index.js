@@ -8,14 +8,23 @@ const root = document.getElementById('root');
 
 ReactDOM.render(<h1>Hello, React!</h1>, root);
 
-let counter = 0;
+class Counter extends React.Component {
+  state = {
+    count: 0,
+  };
 
-function Message(props) {
-  return <p>{props.count}</p>;
+  increment = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    return (
+      <div>
+        <p> Count is {this.state.count} </p>
+        <button onClick={this.increment}>Increment</button>
+      </div>
+    );
+  }
 }
 
-function show() {
-  counter++;
-  ReactDOM.render(<Message count={counter} />, root);
-}
-setInterval(show, 1000);
+ReactDOM.render(<Counter />, root);
